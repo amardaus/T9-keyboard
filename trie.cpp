@@ -1,7 +1,7 @@
 #include "trie.h"
-#include "trie.h"
 #include <iostream>
 #include <map>
+#include "mapping.h"
 
 std::string Trie::charsToInts(std::string key){
     std::string s = "";
@@ -39,14 +39,14 @@ void Trie::insert(std::string key, Trie* root){
     current->isLeaf = true;
 }
 
-bool Trie::search(std::string key, Trie* root){
+std::vector<std::string> Trie::search(std::string key, Trie* root){
     Trie* current = root;
 
     for(size_t i = 0; i < key.length(); i++){
         int index = key[i] - '0';
         if(!current->children[index]){
             std::cout << key << " -" << std::endl;
-            return false;
+            return {};
         }
         current = current->children[index];
     }
@@ -57,10 +57,10 @@ bool Trie::search(std::string key, Trie* root){
             std::cout << current->words.at(i) << " ";
         }
         std::cout << "\n";
-        return true;
+        return current->words;
     }
     else{
         std::cout << key << " -" << std::endl;
-        return false;
+        return {};
     }
 }

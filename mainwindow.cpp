@@ -5,8 +5,11 @@
 #include "custombutton.h"
 #include <fstream>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(Trie* t, Trie* root, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    this->t = t;
+    this->root = root;
+
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
 
@@ -45,8 +48,25 @@ void MainWindow::custombuttonClicked(QString num)
     ui->textEdit->setText(data + num);
 }
 
-
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+
+
+void MainWindow::on_searchButton_clicked()
+{
+    QString data = ui->textEdit->toPlainText();
+    std::vector<std::string> words = t->search(data.toStdString(), root);
+
+
+    QString p_words;
+    for(std::string word : words){
+        QString test = QString::fromStdString(word);
+        p_words.append(test + ", ");
+    }
+
+    ui->words->setText(p_words);
 }

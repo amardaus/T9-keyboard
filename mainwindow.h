@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "trie.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,11 +13,16 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    Trie* t;
+    Trie* root;
+    explicit MainWindow(Trie* t, Trie* root, QWidget *parent = nullptr);
+
+    //MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     void custombuttonClicked(QString num);
+    void on_searchButton_clicked();
 
 private:
     Ui::MainWindow *ui;
