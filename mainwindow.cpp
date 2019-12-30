@@ -3,6 +3,7 @@
 #include <QSignalMapper>
 #include <iostream>
 #include "custombutton.h"
+#include <fstream>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -42,7 +43,6 @@ void MainWindow::custombuttonClicked(QString num)
 {
     QString data = ui->textEdit->toPlainText();
     ui->textEdit->setText(data + num);
-    //https://stackoverflow.com/questions/46254245/get-data-from-qtextedit-line-by-line-in-qt
 }
 
 
