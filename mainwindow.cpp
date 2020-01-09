@@ -53,8 +53,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
+//https://stackoverflow.com/questions/46254245/get-data-from-qtextedit-line-by-line-in-qt
 
 void MainWindow::on_searchButton_clicked()
 {
