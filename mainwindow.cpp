@@ -46,10 +46,10 @@ MainWindow::MainWindow(Trie* t, Trie* root, QWidget *parent) : QMainWindow(paren
 void MainWindow::custombuttonClicked(QString num)
 {
     word += num;
-    searchWords(num);
+    searchWords();
 }
 
-void MainWindow::searchWords(QString num){
+void MainWindow::searchWords(){
     QString data = word;
     std::vector<std::string> words = t->search(data.toStdString(), root);
 
@@ -58,7 +58,7 @@ void MainWindow::searchWords(QString num){
         p_word = QString::fromStdString(words.at(0));
     }
     else{
-        p_word = ui->wordsEdit->toPlainText() + num;
+        p_word = ui->wordsEdit->toPlainText();
     }
     ui->wordsEdit->setText(p_word);
 }
@@ -72,8 +72,7 @@ void MainWindow::on_deleteBtn_clicked()
 {
     if(word.length() >= 0){
         word.chop(1);
-        //searchWords();    //pass or eliminate num
-        ui->wordsEdit->setText(word);
+        searchWords();
     }
 }
 
@@ -99,8 +98,7 @@ void MainWindow::on_nextBtn_clicked()
 
 void MainWindow::on_spaceButton_clicked()
 {
-    ui->wordsEdit->setText(ui->wordsEdit->toPlainText() + " ");
+    ui->finalText->setText(ui->finalText->toPlainText() + " " + ui->wordsEdit->toPlainText());
+    ui->wordsEdit->setText("");
     word = "";
-    wordIndex = 0;
-    //klikniecie w nowa litere usuwa calosc
 }

@@ -16,9 +16,10 @@ public:
     Trie* t;
     Trie* root;
     explicit MainWindow(Trie* t, Trie* root, QWidget *parent = nullptr);
-    void searchWords(QString num);
-    QString word;
-    size_t wordIndex = 0;
+    void searchWords();
+    QString word;   //numeric word
+    size_t wordIndex;
+    int lastSpaceIndex;
 
     ~MainWindow();
 
