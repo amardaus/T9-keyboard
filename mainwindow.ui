@@ -20,7 +20,7 @@
       <x>100</x>
       <y>190</y>
       <width>301</width>
-      <height>181</height>
+      <height>221</height>
      </rect>
     </property>
     <property name="palette">
@@ -489,8 +489,21 @@
       </property>
      </layout>
     </widget>
+    <widget class="QPushButton" name="spaceButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>281</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>space</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="wordsEdit">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -503,27 +516,30 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="searchButton">
+   <widget class="QPushButton" name="deleteBtn">
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>390</y>
+      <y>440</y>
       <width>121</width>
-      <height>41</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="text">
-     <string>search</string>
+     <string>delete</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="words">
+   <widget class="QPushButton" name="nextBtn">
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>390</y>
-      <width>171</width>
-      <height>41</height>
+      <y>440</y>
+      <width>121</width>
+      <height>35</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>next word</string>
     </property>
    </widget>
   </widget>

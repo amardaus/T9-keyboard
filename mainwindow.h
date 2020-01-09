@@ -16,13 +16,17 @@ public:
     Trie* t;
     Trie* root;
     explicit MainWindow(Trie* t, Trie* root, QWidget *parent = nullptr);
+    void searchWords(QString num);
+    QString word;
+    size_t wordIndex = 0;
 
-    //MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     void custombuttonClicked(QString num);
-    void on_searchButton_clicked();
+    void on_deleteBtn_clicked();
+    void on_nextBtn_clicked();
+    void on_spaceButton_clicked();
 
 private:
     Ui::MainWindow *ui;

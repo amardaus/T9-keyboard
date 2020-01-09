@@ -9,9 +9,10 @@ MainWindow::MainWindow(Trie* t, Trie* root, QWidget *parent) : QMainWindow(paren
 {
     this->t = t;
     this->root = root;
+    this->word = "";
 
     ui->setupUi(this);
-    ui->textEdit->setReadOnly(true);
+    ui->wordsEdit->setReadOnly(true);
 
 
     CustomButton* buttons[9] = {
@@ -44,8 +45,22 @@ MainWindow::MainWindow(Trie* t, Trie* root, QWidget *parent) : QMainWindow(paren
 
 void MainWindow::custombuttonClicked(QString num)
 {
-    QString data = ui->textEdit->toPlainText();
-    ui->textEdit->setText(data + num);
+    word += num;
+    searchWords(num);
+}
+
+void MainWindow::searchWords(QString num){
+    QString data = word;
+    std::vector<std::string> words = t->search(data.toStdString(), root);
+
+    QString p_word;
+    if(!words.empty()){
+        p_word = QString::fromStdString(words.at(0));
+    }
+    else{
+        p_word = ui->wordsEdit->toPlainText() + num;
+    }
+    ui->wordsEdit->setText(p_word);
 }
 
 MainWindow::~MainWindow()
@@ -53,19 +68,39 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//https://stackoverflow.com/questions/46254245/get-data-from-qtextedit-line-by-line-in-qt
-
-void MainWindow::on_searchButton_clicked()
+void MainWindow::on_deleteBtn_clicked()
 {
-    QString data = ui->textEdit->toPlainText();
+    if(word.length() >= 0){
+        word.chop(1);
+        //searchWords();    //pass or eliminate num
+        ui->wordsEdit->setText(word);
+    }
+}
+
+void MainWindow::on_nextBtn_clicked()
+{
+    QString data = word;
     std::vector<std::string> words = t->search(data.toStdString(), root);
 
+    if(words.size() > 0){
+        wordIndex++;
+        wordIndex %= words.size();
 
-    QString p_words;
-    for(std::string word : words){
-        QString test = QString::fromStdString(word);
-        p_words.append(test + ", ");
+        QString p_word;
+        if(!words.empty()){
+            p_word = QString::fromStdString(words.at(wordIndex));
+        }
+        else{
+            p_word = ui->wordsEdit->toPlainText();
+        }
+        ui->wordsEdit->setText(p_word);
     }
+}
 
-    ui->words->setText(p_words);
+void MainWindow::on_spaceButton_clicked()
+{
+    ui->wordsEdit->setText(ui->wordsEdit->toPlainText() + " ");
+    word = "";
+    wordIndex = 0;
+    //klikniecie w nowa litere usuwa calosc
 }
