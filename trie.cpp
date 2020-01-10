@@ -1,7 +1,6 @@
 #include "trie.h"
 #include <iostream>
 #include <map>
-#include "mapping.h"
 
 std::string Trie::charsToInts(std::string key){
     std::string s = "";

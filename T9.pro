@@ -24,7 +24,6 @@ SOURCES += \
 HEADERS += \
     custombutton.h \
     mainwindow.h \
-    mapping.h \
     trie.h
 
 FORMS += \
