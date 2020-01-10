@@ -58,7 +58,7 @@ void MainWindow::searchWords(){
         p_word = QString::fromStdString(words.at(0));
     }
     else{
-        p_word = ui->wordsEdit->toPlainText();
+        p_word = ui->wordsEdit->toPlainText() + word.right(1);
     }
     ui->wordsEdit->setText(p_word);
 }
