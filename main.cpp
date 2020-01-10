@@ -23,15 +23,5 @@ int main(int argc, char *argv[])
     MainWindow w(t, root);
     w.show();
 
-    /*
-            TODO:
-            - ADD WORD PRIORITIES!
-            - CHANGE GUI
-
-
-
-    */
-
-
     return a.exec();
 }

@@ -31,5 +31,4 @@ void CustomButton::mousePressEvent(QMouseEvent *e)
     if(e->button()==Qt::LeftButton){
         emit leftClicked();
     }
-
 }
